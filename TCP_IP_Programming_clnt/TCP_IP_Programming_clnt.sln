@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1231
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TCP_IP_Programming_clnt", "TCP_IP_Programming_clnt\TCP_IP_Programming_clnt.vcxproj", "{4903C564-7C8B-4BFD-BA5D-0BE6DF82FFFD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4903C564-7C8B-4BFD-BA5D-0BE6DF82FFFD}.Debug|x64.ActiveCfg = Debug|x64
+		{4903C564-7C8B-4BFD-BA5D-0BE6DF82FFFD}.Debug|x64.Build.0 = Debug|x64
+		{4903C564-7C8B-4BFD-BA5D-0BE6DF82FFFD}.Debug|x86.ActiveCfg = Debug|Win32
+		{4903C564-7C8B-4BFD-BA5D-0BE6DF82FFFD}.Debug|x86.Build.0 = Debug|Win32
+		{4903C564-7C8B-4BFD-BA5D-0BE6DF82FFFD}.Release|x64.ActiveCfg = Release|x64
+		{4903C564-7C8B-4BFD-BA5D-0BE6DF82FFFD}.Release|x64.Build.0 = Release|x64
+		{4903C564-7C8B-4BFD-BA5D-0BE6DF82FFFD}.Release|x86.ActiveCfg = Release|Win32
+		{4903C564-7C8B-4BFD-BA5D-0BE6DF82FFFD}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A50A0515-6372-43CA-B2E0-06780F615C64}
+	EndGlobalSection
+EndGlobal
