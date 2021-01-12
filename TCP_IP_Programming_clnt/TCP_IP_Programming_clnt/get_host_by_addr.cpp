@@ -11,22 +11,26 @@ int main(int argc, char *argv[])
 {
 	WSADATA wsaData;
 	hostent *host;
-	string domain;
+	SOCKADDR_IN addr;
+	string IP_addr;
 
 	if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0)
 		cout << "wsastartup error" << endl;
 
-	cout << "도메인 입력 : ";
-	cin >> domain;
-	const char* ndomain = domain.c_str(); //gethostbyname 함수의 인자가 const char* 형태라 타입변환 필요
-	host = gethostbyname(ndomain);
+	cout << "IP 주소 입력 : ";
+	cin >> IP_addr;
+	const char* nIPaddr = IP_addr.c_str(); //gethostbyaddr 함수의 인자가 const char* 형태라 타입변환 필요
+
+	memset(&addr, 0, sizeof(addr));
+	addr.sin_addr.S_un.S_addr = inet_addr(nIPaddr);
+	host = gethostbyaddr((char*)&addr.sin_addr, 4, AF_INET);
 	if (!host)
-		cout << "gethostbyname error" << endl;
+		cout << "gethostbyaddr error" << endl;
 
 	cout << "Official name : " << host->h_name << endl << endl;
 	for (int i = 0; host->h_aliases[i]; i++) //도메인 이름들
 		cout << "Aliases " << i + 1 << ": " << host->h_aliases[i] << endl;
-	if (host->h_aliases[0] != NULL) cout << endl;
+	if(host->h_aliases[0] != NULL) cout << endl;
 
 	cout << "Adress type : ";
 	if (host->h_addrtype == AF_INET) cout << "AF_INET" << endl << endl;

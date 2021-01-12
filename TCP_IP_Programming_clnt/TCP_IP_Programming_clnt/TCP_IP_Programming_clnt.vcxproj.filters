@@ -18,5 +18,11 @@
     <ClCompile Include="hello_client_win.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="get_host_by_name.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="get_host_by_addr.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
