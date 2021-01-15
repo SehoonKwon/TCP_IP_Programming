@@ -10,7 +10,7 @@ using namespace std;
 #define endl "\n"
 #define BUF_SIZE 30
 
-int main() //argc는 옵션의 개수, argv는 옵션 배열
+int main()
 {
 	WSADATA wsaData;
 	SOCKET hRecvSock;
@@ -49,7 +49,8 @@ int main() //argc는 옵션의 개수, argv는 옵션 배열
 	joinAdr.imr_multiaddr.S_un.S_addr = inet_addr(GroupIP);
 	joinAdr.imr_interface.S_un.S_addr = htonl(INADDR_ANY);
 
-	setsockopt(hRecvSock, IPPROTO_IP, IP_ADD_MEMBERSHIP, (char*)&joinAdr, sizeof(joinAdr)); // 소켓 옵션 멀티 캐스트로 설정, 4번째 인자가 책에는 void* 지만 현재 const char* 형태
+	if (setsockopt(hRecvSock, IPPROTO_IP, IP_ADD_MEMBERSHIP, (char*)&joinAdr, sizeof(joinAdr)) == SOCKET_ERROR) // 소켓 옵션 멀티 캐스트로 설정, 4번째 인자가 책에는 void* 지만 현재 const char* 형태
+		cout << "setsock error" << endl;
 
 	while (1) // 멀티 캐스트 내용 수신
 	{
