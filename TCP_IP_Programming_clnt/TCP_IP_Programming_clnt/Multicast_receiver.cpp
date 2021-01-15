@@ -29,7 +29,7 @@ int main()
 		cout << "socket error" << endl;
 
 	string sGroupIP, sPORT;
-	cout << "Group IP 입력 : ";
+	cout << "Group IP 입력 : "; //그룹 IP를 127.0.0.1 루프백 IP를 넣으면 밑에 setsockopt 에서 에러발생
 	cin >> sGroupIP;
 	cout << "PORT 번호 입력 : ";
 	cin >> sPORT;
