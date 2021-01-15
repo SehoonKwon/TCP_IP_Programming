@@ -10,7 +10,7 @@ using namespace std;
 #define endl "\n"
 #define BUF_SIZE 30
 
-int main(int argc, char* argv[]) //argc는 옵션의 개수, argv는 옵션 배열
+int main() //argc는 옵션의 개수, argv는 옵션 배열
 {
 	WSADATA wsaData;
 	SOCKET hRecvSock;
@@ -22,11 +22,11 @@ int main(int argc, char* argv[]) //argc는 옵션의 개수, argv는 옵션 배열
 
 	//winsock 초기화, 프로그램에서 요구하는 윈도우 소켓 버전을 알리고 해당 버전을 지원하는 라이브러리 초기화 작업
 	if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) //MAKEWOR(주버전, 부버전), WSADATA 변수의 주소 값
-		cout << "WSAStartup Error" << endl;
+		cout << "WSAStartup error" << endl;
 
 	hRecvSock = socket(PF_INET, SOCK_DGRAM, 0); // 멀티캐스트는 UDP 형식
 	if (hRecvSock == INVALID_SOCKET) // -1 상수값이지만 상수로 쓰는게 아니라 이렇게 사용자정의 변수로 사용하면 가독성도 좋고 후에 변화가 있어도 대처가능
-		cout << "socket Error" << endl;
+		cout << "socket error" << endl;
 
 	string sGroupIP, sPORT;
 	cout << "Group IP 입력 : ";
@@ -43,14 +43,13 @@ int main(int argc, char* argv[]) //argc는 옵션의 개수, argv는 옵션 배열
 	Adr.sin_addr.S_un.S_addr = htonl(INADDR_ANY); // 아이피는 자기 자신, 후에 소켓으로 멀티캐스트 그룹에 가입
 	Adr.sin_port = htons(atoi(PORT)); //htons = host byte to network byte short(타입형태)
 
-	if (bind(hRecvSock, (SOCKADDR*)&Adr, sizeof(Adr) == SOCKET_ERROR)) //바인드 에러??
-		cout << "bind Error" << endl;
+	if (bind(hRecvSock, (SOCKADDR*)&Adr, sizeof(Adr)) == SOCKET_ERROR)
+		cout << "bind error" << endl;
 
 	joinAdr.imr_multiaddr.S_un.S_addr = inet_addr(GroupIP);
 	joinAdr.imr_interface.S_un.S_addr = htonl(INADDR_ANY);
 
-	if (setsockopt(hRecvSock, IPPROTO_IP, IP_ADD_MEMBERSHIP, (char*)&joinAdr, sizeof(joinAdr)) == SOCKET_ERROR) // 소켓 옵션 멀티 캐스트로 설정, 4번째 인자가 책에는 void* 지만 현재 const char* 형태
-		cout << "setsock Error" << endl;
+	setsockopt(hRecvSock, IPPROTO_IP, IP_ADD_MEMBERSHIP, (char*)&joinAdr, sizeof(joinAdr)); // 소켓 옵션 멀티 캐스트로 설정, 4번째 인자가 책에는 void* 지만 현재 const char* 형태
 
 	while (1) // 멀티 캐스트 내용 수신
 	{
